@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <script src="https://kit.fontawesome.com/256981549a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/CSS/home.css">
+</head>
+<body>
+
+    <div id="container">
+        <form action="/create-task" method="post">
+        <h1 id="heading">TODO APP</h1>
+
+        <div id="description">
+            <p>DESCRIPTION <i class="fa-solid fa-align-center"></i></p>
+            <input type="text" name="task" placeholder="Write your task here">
+        </div>
+
+        <div id="details">
+            <div id="category">
+                <p>CATEGORY  <i class="fa-solid fa-filter"></i></p>
+                <label for="category">Choose a category</label>
+                <select name="category" id="category">
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="School">School</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+
+            <div id="due-date">
+                <p>DUE DATE <i class="fa-solid fa-clock"></i></p>
+                <input type="date" name="date">
+            </div>
+        </div>
+
+        <div id="buttons">
+            <button type="submit" id="add"><i class="fa-solid fa-plus"></i> add</button>
+            
+        </form>
+        </div>
+
+        <div id="task-list-container">
+            <ul>
+                <% for(let i of task_list){%>
+                    <li class="tasks">
+                        
+                        <div id="task-details">
+                            <div>
+                             <input type="checkbox"  class="check-box" >
+                             <label class="ttt" for="on-click"><%= i.task %></label>
+                             <p class="ccc"><%= i.category %></p>
+                            </div>
+                                <p class="ddd"><%= i.date %></p>
+                             <div>
+                                <a href="/delete-task/?id=<%= i._id %>">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                             </div>
+                            
+                        </div>
+                        
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+    <script src="/JS/home.js"></script>
+
+</body>
+</html>
